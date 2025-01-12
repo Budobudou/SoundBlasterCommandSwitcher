@@ -51,9 +51,9 @@ Func SwitchOutput()
 
 	WinActivate($SOUNDBLASTER_WIN_TITLE)
 	WinWaitActive($SOUNDBLASTER_WIN_TITLE)
-	MouseClick("left", 53, 622, 1, 0)
 	$x = MouseGetPos(0)
 	$y = MouseGetPos(1)
+	MouseClick("left", 53, 622, 1, 0)
         MouseMove($x,$y,0)
 	If $soundblasterWasVisible == 0 Then
 		WinClose($SOUNDBLASTER_WIN_TITLE, "")
