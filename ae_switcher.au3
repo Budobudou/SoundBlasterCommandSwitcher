@@ -14,7 +14,7 @@
 ;
 
 
-HotKeySet("+!^T", "SwitchOutput") ; CTRL + ALT + SHIFT + t (it's T because SHIFT)
+HotKeySet("+!^S", "SwitchOutput") ; CTRL + ALT + SHIFT + s (it's T because SHIFT)
 
 Global $SOUNDBLASTER_WIN_TITLE = "[TITLE:Sound Blaster Command; REGEXPCLASS:HwndWrapper.*]"
 Global $RUNNING = True
@@ -31,6 +31,7 @@ While $RUNNING
 WEnd
 
 Func SwitchOutput()
+    Send('{ESC}')
 	Local $soundblasterWasVisible = BitAND(WinGetState($SOUNDBLASTER_WIN_TITLE), $WIN_STATE_VISIBLE)
 	$saved_win_handle = WinGetHandle("[active]")
 	WinSetState($saved_win_handle, "", @SW_MINIMIZE)
@@ -51,7 +52,9 @@ Func SwitchOutput()
 	WinActivate($SOUNDBLASTER_WIN_TITLE)
 	WinWaitActive($SOUNDBLASTER_WIN_TITLE)
 	MouseClick("left", 53, 622, 1, 0)
-
+	$x = MouseGetPos(0)
+	$y = MouseGetPos(1)
+        MouseMove($x,$y,0)
 	If $soundblasterWasVisible == 0 Then
 		WinClose($SOUNDBLASTER_WIN_TITLE, "")
 	Else
